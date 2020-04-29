@@ -1,6 +1,7 @@
-import { Curso } from '_helpers/db';
+const { Curso } = require('../_helpers/db');
+const EntityNotFoundError = require('../_errors/entity-not-found.error');
 
-export default {
+module.exports = {
     create,
     list,
     findOne,

@@ -1,6 +1,7 @@
-import { Pessoa } from '_helpers/db';
+const { Pessoa } = require('../_helpers/db');
+const CpfAlreadyExistsError = require('../_errors/cpf-already-exists.error');
 
-export default {
+module.exports = {
     create,
     list,
     findOne,
@@ -9,6 +10,11 @@ export default {
 };
 
 async function create(userParam) {
+
+    if (await Pessoa.findOne({ cpf: userParam.cpf })) {
+        throw new CpfAlreadyExistsError(); 
+    }
+
     const pessoa = new Pessoa(userParam);
     await pessoa.save();
     return pessoa;

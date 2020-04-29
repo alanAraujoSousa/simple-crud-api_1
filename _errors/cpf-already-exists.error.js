@@ -1,8 +1,10 @@
-import ApiError from "./api.error"
+const ApiError = require('./api.error');
 
-export default class CpfAlreadyExistsError extends ApiError {
+class CpfAlreadyExistsError extends ApiError {
     constructor(cpf) {
         super(`The CPF ${cpf} already exists!`);
         this.httpCode = 409;
     }
 }
+
+module.exports = CpfAlreadyExistsError;

@@ -1,4 +1,8 @@
-export default function errorHandler(err, req, res, next) {
+const ApiError = require('../_errors/entity-not-found.error')
+
+module.exports = errorHandler;
+
+function errorHandler(err, req, res, next) {
 
     // @TODO mongoose validation 
     if (err.name === 'ValidationError') { 

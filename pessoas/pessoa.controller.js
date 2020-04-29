@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import pessoaService from './pessoa.service';
+const { Router } = require('express');
+const pessoaService =  require('./pessoa.service');
 
 // routes
 const router = Router();
@@ -9,7 +9,7 @@ router.get('/:id', findOne);
 router.put('/:id', update);
 router.delete('/:id', _delete);
 
-export default router;
+module.exports = router;
 
 function create(req, res, next) {
     pessoaService.create(req.body)
