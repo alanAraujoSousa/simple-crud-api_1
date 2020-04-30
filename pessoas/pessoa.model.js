@@ -25,15 +25,28 @@ const schema = new Schema({
     telefone: { 
         type: Number,
         max: [999999999999999, "The telefone should be equal or less than 15 digits"]
+    },
+    cursos: [
+        { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Curso"
+        }
+    ]
+}, {
+    toObject: {
+      transform: function (doc, ret) {
+        ret.id = doc._id;
+        delete ret._id;
+        delete ret.__v;
+      }
+    },
+    toJSON: {
+      transform: function (doc, ret) {
+        ret.id = doc._id;
+        delete ret._id;
+        delete ret.__v;
+      }
     }
 });
-
-schema.methods.toJSON = function() {
-    var obj = this.toObject();
-    obj.id = obj._id;
-    delete obj._id;
-    delete obj.__v;
-    return obj;
-}
 
 module.exports = mongoose.model('Pessoa', schema);

@@ -1,10 +1,10 @@
-const { Curso } = require('../_helpers/db');
+const { Curso, Pessoa } = require('../_helpers/db');
 const EntityNotFoundError = require('../_errors/entity-not-found.error');
+const CursoInvalidDeletionError = require('../_errors/curso-invalid-deletion.error');
 
 module.exports = {
     create,
     list,
-    findOne,
     update,
     _delete
 };
@@ -20,15 +20,6 @@ async function list() {
     return cursos;
 }
 
-async function findOne(id) {
-    let pessoa = await Pessoa.findById(id);
-    if (!pessoa) {
-        throw new EntityNotFoundError("Pessoa");
-    }
-    
-    return pessoa;
-}
-
 async function update(id, userParam) {
     let curso = await Curso.findByIdAndUpdate(id, userParam, { new: true });
     if (!curso) {
@@ -39,6 +30,11 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
+
+    if (await Pessoa.exists({ 'cursos._id': id })) {
+        throw new CursoInvalidDeletionError(id);
+    }
+
     let wasDeleted = await Curso.deleteOne({ _id: id });
 
     if (wasDeleted.n == 0) {
@@ -46,7 +42,7 @@ async function _delete(id) {
     }
 
     if (wasDeleted.ok != 1) {
-        throw new Error("The curso cannot be deleted!");
+        throw new Error(`A system problem stuck the curso ${id} deletion, retry later!`);
     }
 
     return wasDeleted;

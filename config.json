@@ -1,4 +1,4 @@
 {
-    "connectionString": "mongodb://localhost/todo",
-    "secret": "substituir por uma pk"
+    "connectionString": "mongodb://localhost/api",
+    "secret": "change for a pk"
 }

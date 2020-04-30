@@ -5,7 +5,6 @@ const cursoService =  require('./curso.service');
 const router = Router();
 router.post('/', create);
 router.get('/', list);
-router.get('/:id', findOne);
 router.put('/:id', update);
 router.delete('/:id', _delete);
 
@@ -20,12 +19,6 @@ function create(req, res, next) {
 function list(req, res, next) {    
     cursoService.list()
         .then(cursos => cursos && cursos.length > 0 ? res.json(cursos) : res.json([]))
-        .catch(err => next(err));
-}
-
-function findOne(req, res, next) {    
-    cursoService.findOne(req.params.id)
-        .then(pessoa => res.json(pessoa))
         .catch(err => next(err));
 }
 
