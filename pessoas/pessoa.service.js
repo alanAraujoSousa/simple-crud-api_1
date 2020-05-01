@@ -1,4 +1,4 @@
-const { Pessoa, Curso } = require('../_helpers/db');
+const { Pessoa, Curso, mongoose } = require('../_helpers/db');
 const CpfAlreadyExistsError = require('../_errors/cpf-already-exists.error');
 const EntityNotFoundError = require('../_errors/entity-not-found.error');
 
@@ -13,7 +13,7 @@ module.exports = {
 async function create(userParam) {
 
     if (await Pessoa.exists({ cpf: userParam.cpf })) {
-        throw new CpfAlreadyExistsError(); 
+        throw new CpfAlreadyExistsError(userParam.cpf); 
     }
     
     _checkCursoAssociation(userParam);
@@ -49,27 +49,22 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-    let wasDeleted = await Pessoa.deleteOne({ _id: id });
-
-    if (wasDeleted.n == 0) {
+    
+    let pessoa = await Pessoa.findByIdAndDelete(id);
+    
+    if (!pessoa) {
         throw new EntityNotFoundError("Pessoa");
     }
-
-    if (wasDeleted.ok != 1) {
-        throw new Error("The pessoa cannot be deleted!");
-    }
-
-    return wasDeleted;
 }
 
-function _checkCursoAssociation(userParam) {
-    const cursos = userParam.cursos;
+async function _checkCursoAssociation(userParam) {
+    let cursos = userParam.cursos;
 
     if (cursos) {
-        cursos.forEach(c => {
+        for (let c of cursos) {
             if (!await Curso.exists({ _id: c._id || c.id })) {
-                throw new EntityNotFoundError();
+                throw new EntityNotFoundError('Curso');
             }
-        });
+        }
     }
 }

@@ -10,17 +10,13 @@ const schema = new Schema({
         required: [true, "The nome can't be blank"]
     }
 }, {
-    toObject: {
+    toObject: { 
       transform: function (doc, ret) {
-        ret.id = doc._id;
-        delete ret._id;
         delete ret.__v;
       }
     },
     toJSON: {
       transform: function (doc, ret) {
-        ret.id = doc._id;
-        delete ret._id;
         delete ret.__v;
       }
     }

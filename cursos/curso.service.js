@@ -31,19 +31,13 @@ async function update(id, userParam) {
 
 async function _delete(id) {
 
-    if (await Pessoa.exists({ 'cursos._id': id })) {
+    if (await Pessoa.exists({ cursos: id })) {
         throw new CursoInvalidDeletionError(id);
     }
 
-    let wasDeleted = await Curso.deleteOne({ _id: id });
-
-    if (wasDeleted.n == 0) {
+    let curso = await Curso.findByIdAndDelete(id);
+    
+    if (!curso) {
         throw new EntityNotFoundError("Curso");
     }
-
-    if (wasDeleted.ok != 1) {
-        throw new Error(`A system problem stuck the curso ${id} deletion, retry later!`);
-    }
-
-    return wasDeleted;
 }

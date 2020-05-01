@@ -1,4 +1,4 @@
-const ApiError = require('../_errors/entity-not-found.error')
+const ApiError = require('../_errors/api.error')
 
 module.exports = errorHandler;
 
@@ -15,5 +15,5 @@ function errorHandler(err, req, res, next) {
     }
 
     // default to 500 server error
-    return res.status(500).json({ mensagem: err.message });
+    return res.status(500).json({ message: `Intern API error: ${err.message}` });
 }

@@ -21,11 +21,11 @@ describe('Testing the curso creation', () => {
     test('Creating curso with valid infos', async done => {
 
         let cursoReceived = {
+            _id: 523221,
             nome: "Advanced jedi's dark side"
         };
 
         const response = await request.post('/cursos/').send(cursoReceived);
-        
         expect(response.status).toBe(201);
 
         done();
@@ -49,6 +49,7 @@ describe('Testing the curso deletion', () => {
     test('Deleting an existent curso', async done => {
 
         let cursoReceived = {
+            _id: 4930422,
             nome: "Basic defense against the dark arts",
         };
 
@@ -71,6 +72,7 @@ describe('Testing the curso deletion', () => {
     test("Deleting a curso that's still associated with dependencies", async done => {
 
         let cursoReceived = {
+            _id: 3233333,
             nome: "Advanced resistency to the ring power"
         };
 

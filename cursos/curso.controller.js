@@ -24,12 +24,12 @@ function list(req, res, next) {
 
 function update(req, res, next) {
     cursoService.update(req.params.id, req.body)
-        .then(res.sendStatus(200))
+        .then(() => res.sendStatus(200))
         .catch(err => next(err));
 }
 
 function _delete(req, res, next) {
     cursoService._delete(req.params.id)
-        .then(res.sendStatus(200))
+        .then(() => res.sendStatus(200))
         .catch(err => next(err));
 }

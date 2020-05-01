@@ -31,12 +31,12 @@ function findOne(req, res, next) {
 
 function update(req, res, next) {
     pessoaService.update(req.params.id, req.body)
-        .then(res.sendStatus(200))
+        .then(() => res.sendStatus(200))
         .catch(err => next(err));
 }
 
 function _delete(req, res, next) {
     pessoaService._delete(req.params.id)
-        .then(res.sendStatus(200))
+        .then(() => res.sendStatus(200))
         .catch(err => next(err));
 }

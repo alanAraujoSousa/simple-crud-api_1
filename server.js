@@ -1,7 +1,7 @@
 require('rootpath')();
 const express = require('express');
 const bodyParser = require('body-parser');
-const errorHandler = require('_helpers/error-handler');
+const errorHandler = require('./_helpers/error-handler');
 const cors = require('cors');
 const logger = require('morgan');
 
@@ -14,8 +14,8 @@ app.use(cors());
 const environment = process.env.NODE_ENV;
 
 // api routes
-app.use('/pessoa', require('./pessoas/pessoa.controller'));
-app.use('/curso', require('./cursos/curso.controller'));
+app.use('/pessoas', require('./pessoas/pessoa.controller'));
+app.use('/cursos', require('./cursos/curso.controller'));
 
 // global error handler
 app.use(errorHandler);

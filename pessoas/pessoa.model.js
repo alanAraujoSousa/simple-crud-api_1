@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const uuid = require('node-uuid');
 const { cpf } = require('cpf-cnpj-validator');
 
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    _id: { type: String, default: uuid.v1},
+    
     nome: { 
         type: String, 
         maxlength: [40, "The nome of the pessoa should be equal or less then of 40 characters" ], 
@@ -28,22 +27,18 @@ const schema = new Schema({
     },
     cursos: [
         { 
-            type: mongoose.Schema.Types.ObjectId,
+            type: Number,
             ref: "Curso"
         }
     ]
 }, {
     toObject: {
       transform: function (doc, ret) {
-        ret.id = doc._id;
-        delete ret._id;
         delete ret.__v;
       }
     },
     toJSON: {
       transform: function (doc, ret) {
-        ret.id = doc._id;
-        delete ret._id;
         delete ret.__v;
       }
     }
