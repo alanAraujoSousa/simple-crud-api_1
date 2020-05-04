@@ -12,7 +12,8 @@ router.delete('/:id', _delete);
 module.exports = router;
 
 function create(req, res, next) {
-    pessoaService.create(req.body)
+    let content = req.body;
+    pessoaService.create(content)
         .then(pessoaCreated => res.status(201).json(pessoaCreated))
         .catch(err => next(err));
 }
