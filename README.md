@@ -1,5 +1,4 @@
 # simple-crud-api_1
-A simple crud api to do a demo
 
 Para a execução do projeto: 
 
@@ -13,8 +12,10 @@ Para a execução do projeto:
   <li>npm start</li>
   <li>cd ..</li>
   <li>git clone https://github.com/alanAraujoSousa/simple-crud-web-client_1</li>
+  <li>cd simple-crud-web-client_1</li>
   <li>npm i</li>
   <li>npm start</li>
 </ol>
 
+A Utilização é simples, são dadas as funcionalidade de criar e manipular cursos e pessoas.
 
