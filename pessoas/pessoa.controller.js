@@ -32,7 +32,7 @@ function findOne(req, res, next) {
 
 function update(req, res, next) {
     pessoaService.update(req.params.id, req.body)
-        .then(() => res.sendStatus(200))
+        .then(pessoa => res.status(200).json(pessoa))
         .catch(err => next(err));
 }
 

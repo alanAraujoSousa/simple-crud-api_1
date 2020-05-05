@@ -61,7 +61,7 @@ async function _checkCursoAssociation(userParam) {
 
     if (cursos) {
         for (let c of cursos) {
-            if (!await Curso.exists({ _id: c._id || c.id })) {
+            if (!await Curso.exists({ _id: c })) {
                 throw new EntityNotFoundError('Curso');
             }
         }
