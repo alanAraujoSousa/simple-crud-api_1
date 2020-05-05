@@ -49,7 +49,6 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-    
     let pessoa = await Pessoa.findByIdAndDelete(id);
     
     if (!pessoa) {

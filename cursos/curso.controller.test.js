@@ -82,7 +82,7 @@ describe('Testing the curso deletion', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Frodo Baggins",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
             cursos: [
                 curso
             ]

@@ -38,6 +38,6 @@ function update(req, res, next) {
 
 function _delete(req, res, next) {
     pessoaService._delete(req.params.id)
-        .then(() => res.sendStatus(200))
+        .then(() => res.status(200).json(req.params.id))
         .catch(err => next(err));
 }

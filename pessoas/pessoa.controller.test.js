@@ -23,7 +23,7 @@ describe('Testing the pessoa creation', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Harry Potter",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
         }
 
         const response = await request.post('/pessoas/').send(pessoaReceived);
@@ -40,7 +40,7 @@ describe('Testing the pessoa creation', () => {
         let pessoaReceived = {
             cpf: cpfDuplicated,
             nome: "Harry Potter",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
         }
 
         const pessoa = new Pessoa(pessoaReceived);
@@ -72,7 +72,7 @@ describe('Testing the pessoas deletion', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Harry Potter",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
         }
 
         const pessoa = new Pessoa(pessoaReceived);
@@ -98,7 +98,7 @@ describe('Testing the pessoa editing', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Anakin Skywalker",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
         }
 
         const pessoa = new Pessoa(pessoaReceived);
@@ -132,7 +132,7 @@ describe('Testing the pessoa editing', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Anakin Skywalker",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
             cursos: [ cursoToRemove.toObject() ]
         }
 
@@ -167,7 +167,7 @@ describe('Testing the pessoa editing', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Anakin Skywalker",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
             cursos: [
                 curso.toObject(), curso2.toObject()
             ]
@@ -196,7 +196,7 @@ describe('Testing the pessoa editing', () => {
         let pessoaReceived = {
             cpf: cpf.generate(),
             nome: "Anakin Skywalker",
-            telefone: 34342727,
+            telefone: "(888)88888-8888",
         }
 
         const response = await request.put('/pessoas/' + '5d6ede6a0ba62570afcedd3a').send(pessoaReceived);

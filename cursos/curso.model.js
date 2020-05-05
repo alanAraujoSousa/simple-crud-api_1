@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    _id: { type: Number },
+    _id: { 
+      type: Number, 
+      required: [true, "The matricula should be provided"]
+    },
     nome: { 
         type: String,
         maxlength: [40, "The nome of the curso should be less then of 40 characters" ], 

@@ -17,17 +17,16 @@ const schema = new Schema({
         validate: {
             validator: function(cpfValue) {
                 let isValid = false;
-                isValid = /\d{11}/.test(cpfValue);
-                cpf.isValid(cpfValue);
+                isValid = /^\d{3}.\d{3}.\d{3}-\d{2}$/.test(cpfValue);
+                isValid = cpf.isValid(cpfValue);
                 return isValid;
             },
-            message: "The CPF isn't valid, please give 11 digits!"
+            message: "The CPF isn't valid, please give a valid number in format: XXX.XXX.XXX-XX"
         },
     },
     telefone: { 
         type: String,
-        match: [/^\d*$/, "The telefone should be only digits"],
-        maxlength: [15, "The telefone should be equal or less than 15 digits"]
+        match: [/^\(\d{3}\)\d{5}-\d{4}$/, "The telefone is invalid, please give in format (xxx)xxxxx-xxxx"],
     },
     cursos: [
         { 
